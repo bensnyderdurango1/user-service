@@ -30,4 +30,11 @@ app.get("/users/:id", (req, res) => {
   res.json(user);
 });
 
+app.delete("/users/:id", (req, res) => {
+  if (!users.delete(req.params.id)) {
+    return res.status(404).json({ error: "not found" });
+  }
+  res.status(204).end();
+});
+
 module.exports = app;
