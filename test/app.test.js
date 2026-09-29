@@ -22,3 +22,13 @@ test("POST /users validates input", async () => {
   const res = await request(app).post("/users").send({ name: "NoEmail" });
   assert.strictEqual(res.status, 400);
 });
+
+test("DELETE /users/:id removes a user", async () => {
+  const created = await request(app)
+    .post("/users")
+    .send({ name: "Grace", email: "grace@example.com" });
+  const del = await request(app).delete(`/users/${created.body.id}`);
+  assert.strictEqual(del.status, 204);
+  const fetched = await request(app).get(`/users/${created.body.id}`);
+  assert.strictEqual(fetched.status, 404);
+});

@@ -19,3 +19,4 @@ npm test
 | GET    | /users        | List users       |
 | POST   | /users        | Create a user    |
 | GET    | /users/:id    | Fetch a user     |
+| DELETE | /users/:id    | Delete a user    |
